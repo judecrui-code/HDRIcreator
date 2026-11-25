@@ -1,0 +1,43 @@
+name: HDRICreator
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  HDRICreator:
+    type: application
+    platform: iOS
+    sources: [HDRICreator]
+    info:
+      path: HDRICreator/App/Info.plist
+      properties:
+        CFBundleDisplayName: HDRI Creator
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIRequiredDeviceCapabilities: [arm64, still-camera, gyroscope]
+        NSCameraUsageDescription: HDRI Creator uses the camera to capture the 28 overlapping exposures that make up your panorama.
+        NSMotionUsageDescription: HDRI Creator uses the gyroscope and accelerometer to guide you to each capture position and to align the photos.
+        NSPhotoLibraryAddUsageDescription: HDRI Creator can save exported panoramas to your photo library.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.HDRICreator
+        GENERATE_INFOPLIST_FILE: NO
+  HDRICreatorTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [HDRICreatorTests]
+    dependencies:
+      - target: HDRICreator
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
